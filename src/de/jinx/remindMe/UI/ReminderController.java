@@ -1,5 +1,6 @@
 package de.jinx.remindMe.UI;
 
+import de.jinx.remindMe.ThreadStuff.BackgroundTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +9,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ReminderController {
+
+    boolean isRunning = false;
 
     @FXML
     private TextArea note;
@@ -23,7 +26,19 @@ public class ReminderController {
 
     @FXML
     void startReminder(ActionEvent event) {
-        //Start Timer
+        if(!isRunning) {
+            isRunning = true;
+            BackgroundTimer backgroundTimer = new BackgroundTimer(timer.getValue(), note);
+            note.setEditable(false);
+            backgroundTimer.start();
+
+            while (backgroundTimer.isAlive()){
+
+            }
+
+            backgroundTimer.interrupt();
+            isRunning = false;
+        }
     }
 
     @FXML
