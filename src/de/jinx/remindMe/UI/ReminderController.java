@@ -3,14 +3,16 @@ package de.jinx.remindMe.UI;
 import de.jinx.remindMe.ThreadStuff.BackgroundTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class ReminderController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    boolean isRunning = false;
+public class ReminderController implements Initializable {
 
     @FXML
     private TextArea note;
@@ -24,26 +26,27 @@ public class ReminderController {
     @FXML
     private TextField remainingTimer;
 
+    private boolean isRunning;
+
+    //TODO: Background Timer einmalig ausführen lassen und dann bei interrupt isRunning = false stellen
     @FXML
     void startReminder(ActionEvent event) {
-        if(!isRunning) {
-            isRunning = true;
-            BackgroundTimer backgroundTimer = new BackgroundTimer(timer.getValue(), note);
-            note.setEditable(false);
+        BackgroundTimer backgroundTimer = null;
+
+        if(isRunning == false) {
+            backgroundTimer = new BackgroundTimer(timer.getValue(), note, remainingTimer);
             backgroundTimer.start();
 
-            while (backgroundTimer.isAlive()){
-                //TODO: Background Timer einmalig ausführen lassen und dann bei interrupt isRunning = false stellen
-            }
-
-            //Wird direkt danach ausgeführt aber backgroundTimer nicht gestoppt( vlt backgroundTimer.stop())
             backgroundTimer.interrupt();
-            isRunning = false;
         }
     }
 
-    @FXML
-    public void initialize() {
+    public void setRemainingTime(String time) {
+        remainingTimer.setText(time);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         timer.getItems().add(0,10);
         timer.getItems().add(0,15);
         timer.getItems().add(0,20);
@@ -51,5 +54,9 @@ public class ReminderController {
         timer.getItems().add(0,30);
         timer.getItems().add(0,45);
         timer.getItems().add(0,60);
+    }
+
+    public void setRunning(boolean state){
+        isRunning = state;
     }
 }
