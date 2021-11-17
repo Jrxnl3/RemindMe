@@ -39,6 +39,7 @@ public class BackgroundTimer extends Thread{
                     textArea.setEditable(true);
                     Main.controller.setRemainingTime("Done!");
                     Main.controller.setRunning(false);
+                    //Main.controller.stopThread();
                     timer.cancel();
                 }
             }

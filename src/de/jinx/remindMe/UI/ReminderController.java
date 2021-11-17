@@ -28,16 +28,17 @@ public class ReminderController implements Initializable {
 
     private boolean isRunning;
 
+    private BackgroundTimer backgroundTimer;
+
     //TODO: Background Timer einmalig ausführen lassen und dann bei interrupt isRunning = false stellen
     @FXML
     void startReminder(ActionEvent event) {
-        BackgroundTimer backgroundTimer = null;
-
-        if(isRunning == false) {
+        if(backgroundTimer==null){
             backgroundTimer = new BackgroundTimer(timer.getValue(), note, remainingTimer);
-            backgroundTimer.start();
+        }
 
-            backgroundTimer.interrupt();
+        if(!isRunning) {
+            backgroundTimer.start();
         }
     }
 
