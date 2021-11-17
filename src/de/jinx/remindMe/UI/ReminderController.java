@@ -33,9 +33,10 @@ public class ReminderController {
             backgroundTimer.start();
 
             while (backgroundTimer.isAlive()){
-
+                //TODO: Background Timer einmalig ausführen lassen und dann bei interrupt isRunning = false stellen
             }
 
+            //Wird direkt danach ausgeführt aber backgroundTimer nicht gestoppt( vlt backgroundTimer.stop())
             backgroundTimer.interrupt();
             isRunning = false;
         }
