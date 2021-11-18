@@ -33,8 +33,6 @@ public class BackgroundTimer extends Thread{
                     Main.controller.setRunning(true);
 
                 } else {
-
-                    System.out.println(textArea.getText());
                     textArea.setEditable(true);
                     Main.controller.setRemainingTime("Done!");
                     Main.controller.setRunning(false);

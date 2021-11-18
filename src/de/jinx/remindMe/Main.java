@@ -39,7 +39,6 @@ public class Main extends Application {
     }
     @Override
     public void stop() {
-        System.out.println("Stop");
         tray.remove(trayIcon);
         Platform.exit();
     }
