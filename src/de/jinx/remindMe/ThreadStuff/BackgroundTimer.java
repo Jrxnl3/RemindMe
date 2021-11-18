@@ -29,7 +29,6 @@ public class BackgroundTimer extends Thread{
             public void run() {
                 if (time > 0) {
                     time--;
-                    //TODO: Remaining TextField Satz setzen
                     Main.controller.setRemainingTime(time + " minuten");
                     Main.controller.setRunning(true);
 
@@ -39,11 +38,11 @@ public class BackgroundTimer extends Thread{
                     textArea.setEditable(true);
                     Main.controller.setRemainingTime("Done!");
                     Main.controller.setRunning(false);
-                    //Main.controller.stopThread();
+
+                    Main.displayMessage("Remind Me Counter!","The Counter is done! Don't forget it!");
                     timer.cancel();
                 }
             }
         }, 0, 1000L); //TODO: Change 1000L to 10000L wegen Minuten nicht Sekunden
-
     }
 }

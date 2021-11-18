@@ -21,7 +21,7 @@
             <TextArea fx:id="note" layoutX="88.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" />
             <ChoiceBox fx:id="timer" layoutX="88.0" layoutY="14.0" prefWidth="150.0" />
             <Button fx:id="reminder" alignment="CENTER" layoutX="238.0" layoutY="14.0" mnemonicParsing="false" onAction="#startReminder" text="Start" />
-            <TextField fx:id="remainingTimer" alignment="CENTER" editable="false" layoutX="89.0" layoutY="56.0" prefHeight="25.0" prefWidth="200.0" promptText="Remainig Time" />
+            <TextField fx:id="remainingTimer" alignment="CENTER" editable="false" layoutX="89.0" layoutY="56.0" prefHeight="25.0" prefWidth="200.0" promptText="Remaining Time" />
          </children>
       </AnchorPane>
    </children>

@@ -30,21 +30,14 @@ public class ReminderController implements Initializable {
 
     private BackgroundTimer backgroundTimer;
 
-    //TODO: Background Timer einmalig ausführen lassen und dann bei interrupt isRunning = false stellen
     @FXML
     void startReminder(ActionEvent event) {
-        if(backgroundTimer==null){
-            backgroundTimer = new BackgroundTimer(timer.getValue(), note, remainingTimer);
-        }
-
         if(!isRunning) {
+            backgroundTimer = new BackgroundTimer(timer.getValue(), note, remainingTimer);
             backgroundTimer.start();
         }
     }
 
-    public void setRemainingTime(String time) {
-        remainingTimer.setText(time);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,6 +48,10 @@ public class ReminderController implements Initializable {
         timer.getItems().add(0,30);
         timer.getItems().add(0,45);
         timer.getItems().add(0,60);
+    }
+
+    public void setRemainingTime(String time) {
+        remainingTimer.setText(time);
     }
 
     public void setRunning(boolean state){
